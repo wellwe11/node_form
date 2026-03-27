@@ -1,12 +1,17 @@
 import usersStorage from "../Storages/usersStorage.js";
-import type { Request, Response } from "express";
+import type { Request, Response, RequestHandler } from "express";
 
-import { body, validationResult, matchedData } from "express-validator";
+import {
+  body,
+  validationResult,
+  matchedData,
+  type ValidationChain,
+} from "express-validator";
 
 const alphaErr = "Must only container letters.";
 const legnthErr = "Must be between 1 and 10 characters.";
 
-const validateUser = [
+const validateUser: ValidationChain[] = [
   body("firstName")
     .trim()
     .isAlpha()
@@ -21,8 +26,8 @@ const validateUser = [
     .withMessage(`Last name ${legnthErr}`),
 ];
 
-export const usersCreatePost = [
-  validateUser,
+export const usersCreatePost: RequestHandler[] = [
+  ...validateUser,
   (req: Request, res: Response) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
