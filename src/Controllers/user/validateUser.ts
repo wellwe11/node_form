@@ -1,0 +1,25 @@
+import type { Request, Response, RequestHandler } from "express";
+
+import { validationResult, matchedData } from "express-validator";
+
+import usersStorage from "../../Storages/usersStorage.js";
+import { validateUser } from "./usersController.js";
+
+const usersCreatePost: RequestHandler[] = [
+  ...validateUser,
+  (req: Request, res: Response) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).render("createUser", {
+        title: "Create user",
+        errors: errors.array(),
+      });
+    }
+
+    const { firstName, lastName } = matchedData(req);
+    usersStorage.addUser({ firstName, lastName });
+    res.redirect("/");
+  },
+];
+
+export default usersCreatePost;

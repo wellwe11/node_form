@@ -28,6 +28,13 @@ class UsersStorage {
     return this.storage[id];
   }
 
+  updateUser(
+    id: userId,
+    { firstName, lastName }: { firstName: userName; lastName: userName },
+  ) {
+    this.storage[id] = { id, firstName, lastName };
+  }
+
   deleteUser(id: userId) {
     delete this.storage[id];
   }

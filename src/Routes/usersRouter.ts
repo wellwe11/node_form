@@ -1,9 +1,13 @@
 import { Router } from "express";
+
+import usersCreatePost from "../Controllers/user/validateUser.js";
+import usersListGet from "../Controllers/user/usersListGet.js";
+import usersCreateGet from "../Controllers/user/usersCreateGet.js";
 import {
-  usersListGet,
-  usersCreateGet,
-  usersCreatePost,
-} from "../Controllers/usersController.js";
+  usersUpdateGet,
+  usersUpdatePost,
+} from "../Controllers/user/usersUpdate.js";
+import usersDeletePost from "../Controllers/user/usersDeletePost.js";
 
 const userRouter = Router();
 
@@ -13,5 +17,12 @@ userRouter.get("/", usersListGet);
 // Add user => post user
 userRouter.get("/create", usersCreateGet);
 userRouter.post("/create", usersCreatePost);
+
+// Configure specific user
+userRouter.get("/:id/update", usersUpdateGet);
+userRouter.post("/:id/update", usersUpdatePost);
+
+// Delete user
+userRouter.post("/:id/delete", usersDeletePost);
 
 export default userRouter;
