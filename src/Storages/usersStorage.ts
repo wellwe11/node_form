@@ -1,9 +1,9 @@
-import type { User, userId, userName } from "../Types/user.js";
+import type { User, userEmail, userId, userName } from "../Types/user.js";
 
 class UsersStorage {
   storage: Record<number, User>;
   id: userId;
-  email: string;
+  email: userEmail;
 
   constructor() {
     this.storage = {};
@@ -18,7 +18,7 @@ class UsersStorage {
   }: {
     firstName: userName;
     lastName: userName;
-    email: string;
+    email: userEmail;
   }) {
     const id = this.id;
     this.storage[id] = { id, firstName, lastName, email };
@@ -32,7 +32,7 @@ class UsersStorage {
     return this.storage[id];
   }
 
-  getUserByEmail(email: string): User | undefined {
+  getUserByEmail(email: userEmail): User | undefined {
     return Object.values(this.storage).find((user) => user.email === email);
   }
 
@@ -42,7 +42,7 @@ class UsersStorage {
       firstName,
       lastName,
       email,
-    }: { firstName: userName; lastName: userName; email: string },
+    }: { firstName: userName; lastName: userName; email: userEmail },
   ) {
     this.storage[id] = { id, firstName, lastName, email };
   }

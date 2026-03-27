@@ -25,8 +25,12 @@ export const usersUpdatePost = [
       });
     }
 
-    const { firstName, lastName } = matchedData(req);
-    usersStorage.updateUser(Number(req.params.id), { firstName, lastName });
+    const { firstName, lastName, email } = matchedData(req);
+    usersStorage.updateUser(Number(req.params.id), {
+      firstName,
+      lastName,
+      email,
+    });
     res.redirect("/");
   },
 ];

@@ -11,6 +11,7 @@ const usersCreatePost: RequestHandler[] = [
     // First we validate the user
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      console.log(errors);
       return res.status(400).render("createUser", {
         title: "Create user",
         errors: errors.array(),
@@ -18,8 +19,8 @@ const usersCreatePost: RequestHandler[] = [
     }
 
     // If all checks out, add user to storage
-    const { firstName, lastName } = matchedData(req);
-    usersStorage.addUser({ firstName, lastName });
+    const { firstName, lastName, email } = matchedData(req);
+    usersStorage.addUser({ firstName, lastName, email });
     res.redirect("/");
   },
 ];

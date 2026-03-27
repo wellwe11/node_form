@@ -23,7 +23,7 @@ export const validateUser: ValidationChain[] = [
     .trim()
     .normalizeEmail()
     .isEmail()
-    .withMessage(emailErr)
+    .withMessage(`Email ${emailErr}`)
     .isLength({ min: 1 })
     .custom(async (email) => {
       const existingUser = await usersStorage.getUserByEmail(email);
