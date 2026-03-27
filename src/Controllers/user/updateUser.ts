@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
+import { matchedData, validationResult } from "express-validator";
 import usersStorage from "../../Storages/usersStorage.js";
 import { validateUser } from "./usersController.js";
-import { matchedData, validationResult } from "express-validator";
 
 export const usersUpdateGet = (req: Request, res: Response) => {
   const user = usersStorage.getUser(Number(req.params.id));

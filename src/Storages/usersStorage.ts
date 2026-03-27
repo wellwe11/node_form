@@ -3,21 +3,25 @@ import type { User, userId, userName } from "../Types/user.js";
 class UsersStorage {
   storage: Record<number, User>;
   id: userId;
+  email: string;
 
   constructor() {
     this.storage = {};
     this.id = 0;
+    this.email = "";
   }
 
   addUser({
     firstName,
     lastName,
+    email,
   }: {
     firstName: userName;
     lastName: userName;
+    email: string;
   }) {
     const id = this.id;
-    this.storage[id] = { id, firstName, lastName };
+    this.storage[id] = { id, firstName, lastName, email };
   }
 
   getUsers() {
@@ -28,11 +32,19 @@ class UsersStorage {
     return this.storage[id];
   }
 
+  getUserByEmail(email: string): User | undefined {
+    return Object.values(this.storage).find((user) => user.email === email);
+  }
+
   updateUser(
     id: userId,
-    { firstName, lastName }: { firstName: userName; lastName: userName },
+    {
+      firstName,
+      lastName,
+      email,
+    }: { firstName: userName; lastName: userName; email: string },
   ) {
-    this.storage[id] = { id, firstName, lastName };
+    this.storage[id] = { id, firstName, lastName, email };
   }
 
   deleteUser(id: userId) {

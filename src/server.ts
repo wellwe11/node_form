@@ -5,8 +5,11 @@ import path, { dirname } from "node:path";
 
 import dotenv from "dotenv";
 
-import { body, validationResult } from "express-validator";
 import userRouter from "./Routes/usersRouter.js";
+
+// Add Email (required),
+// Age (Optional)
+// Bio (Optional, 200 chars)
 
 // Load .env
 dotenv.config();
