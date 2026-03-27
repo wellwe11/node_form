@@ -37,6 +37,7 @@ class UsersStorage {
   }) {
     const id = this.id;
     this.storage[id] = { id, firstName, lastName, email, age, bio };
+    this.id++;
   }
 
   getUsers() {
