@@ -8,6 +8,7 @@ import {
   usersUpdatePost,
 } from "../Controllers/user/updateUser.js";
 import usersDeletePost from "../Controllers/user/usersDeletePost.js";
+import usersCreateSearch from "../Controllers/user/usersCreateSearch.js";
 
 const userRouter = Router();
 
@@ -17,6 +18,9 @@ userRouter.get("/", usersListGet);
 // Add user => post user
 userRouter.get("/create", usersCreateGet);
 userRouter.post("/create", usersCreatePost);
+
+// Search for user. If user is found, it will redirect it to /:id/update
+userRouter.get("/search", usersCreateSearch);
 
 // Configure specific user
 userRouter.get("/:id/update", usersUpdateGet);

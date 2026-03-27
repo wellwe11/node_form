@@ -8,8 +8,12 @@
     <h1><%= title %></h1>
 
     <form action="/search" method="GET">
-      <label for="search">Search for user</label>
-      <input type="text" name="search" id="search" />
+      <label for="email">Search by email</label>
+      <input type="email" name="email" id="searchEmail" />
+
+      <label for="name">Search by name</label>
+      <input type="text" name="name" id="searchName" />
+
       <button type="submit">Search</button>
     </form>
 
