@@ -19,8 +19,10 @@ const usersCreatePost: RequestHandler[] = [
     }
 
     // If all checks out, add user to storage
-    const { firstName, lastName, email } = matchedData(req);
-    usersStorage.addUser({ firstName, lastName, email });
+    const { firstName, lastName, email, age, bio } = matchedData(req, {
+      includeOptionals: true,
+    });
+    usersStorage.addUser({ firstName, lastName, email, age, bio });
     res.redirect("/");
   },
 ];

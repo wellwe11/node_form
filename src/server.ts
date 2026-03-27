@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 
 import userRouter from "./Routes/usersRouter.js";
 
-// Add Email (required),
+// Add Email (required), (DONE)
 // Age (Optional)
 // Bio (Optional, 200 chars)
 

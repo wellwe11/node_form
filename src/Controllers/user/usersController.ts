@@ -5,6 +5,7 @@ const alphaErr = "Must only container letters.";
 const legnthErr = "Must be between 1 and 10 characters.";
 const emailErr = "Must by of type email.";
 const emailInUse = "Email is already in use.";
+const ageErr = "Format must be 'DD/MM/yyyy'";
 
 export const validateUser: ValidationChain[] = [
   body("firstName")
@@ -32,4 +33,5 @@ export const validateUser: ValidationChain[] = [
         throw new Error(emailInUse);
       }
     }),
+  body("age").optional({ values: "falsy" }).isInt({ min: 0, max: 99 }),
 ];

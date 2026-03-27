@@ -1,27 +1,42 @@
-import type { User, userEmail, userId, userName } from "../Types/user.js";
+import type {
+  User,
+  userAge,
+  userBio,
+  userEmail,
+  userId,
+  userName,
+} from "../Types/user.js";
 
 class UsersStorage {
   storage: Record<number, User>;
   id: userId;
   email: userEmail;
+  age?: userAge;
+  bio?: userBio;
 
   constructor() {
     this.storage = {};
     this.id = 0;
     this.email = "";
+    this.age = undefined;
+    this.bio = undefined;
   }
 
   addUser({
     firstName,
     lastName,
     email,
+    age,
+    bio,
   }: {
     firstName: userName;
     lastName: userName;
     email: userEmail;
+    age?: userAge;
+    bio?: userBio;
   }) {
     const id = this.id;
-    this.storage[id] = { id, firstName, lastName, email };
+    this.storage[id] = { id, firstName, lastName, email, age, bio };
   }
 
   getUsers() {
@@ -42,9 +57,17 @@ class UsersStorage {
       firstName,
       lastName,
       email,
-    }: { firstName: userName; lastName: userName; email: userEmail },
+      age,
+      bio,
+    }: {
+      firstName: userName;
+      lastName: userName;
+      email: userEmail;
+      age?: number;
+      bio?: string;
+    },
   ) {
-    this.storage[id] = { id, firstName, lastName, email };
+    this.storage[id] = { id, firstName, lastName, email, age, bio };
   }
 
   deleteUser(id: userId) {

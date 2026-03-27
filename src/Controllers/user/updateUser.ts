@@ -25,11 +25,15 @@ export const usersUpdatePost = [
       });
     }
 
-    const { firstName, lastName, email } = matchedData(req);
+    const { firstName, lastName, email, age, bio } = matchedData(req, {
+      includeOptionals: true,
+    });
     usersStorage.updateUser(Number(req.params.id), {
       firstName,
       lastName,
       email,
+      age,
+      bio,
     });
     res.redirect("/");
   },
