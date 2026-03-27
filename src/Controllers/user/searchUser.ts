@@ -12,7 +12,7 @@ const searchUsers: RequestHandler[] = [
 
     if (!errors.isEmpty()) {
       return res.status(400).render("searchUser", {
-        title: "User not found",
+        title: "Error searching user",
         errors: errors.array(),
         user: null,
       });
@@ -20,6 +20,14 @@ const searchUsers: RequestHandler[] = [
 
     const { name, email } = matchedData(req);
     const user = usersStorage.findUser(email, name);
+
+    if (!user) {
+      return res.status(400).render("searchUser", {
+        title: "User not found",
+        errors: errors.array(),
+        user: null,
+      });
+    }
 
     return res.render("searchUser", {
       title: "Found user",

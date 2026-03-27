@@ -59,6 +59,9 @@ class UsersStorage {
 
     if (name) {
       const splitted = name.split(" ");
+      console.log(splitted);
+      console.log(Object.values(this.storage));
+
       return Object.values(this.storage).find(
         (user) =>
           user.firstName === splitted[0] && user.lastName === splitted[1],

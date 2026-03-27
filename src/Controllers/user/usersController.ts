@@ -45,8 +45,6 @@ export const validateSearch = [
     .optional({ values: "falsy" })
     .isString()
     .trim()
-    .isAlpha()
-    .withMessage(`${alphaErr}`)
     .isLength({ min: 1, max: 23 })
     .withMessage(`${legnthErr}`),
 
