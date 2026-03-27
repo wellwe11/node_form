@@ -3,38 +3,23 @@
   <head>
     <title><%= title %></title>
   </head>
-
   <body>
-    <h1><%= title %></h1>
-
+    <h1><%= title $></h1>
     <%- include("partials/errors.ejs") %>
-
-    <form
-      action="/create
-    "
-      method="POST"
-    >
-      <label for="firstName">First Name: </label>
+    <form action="/<%= user.id %>/update" method="POST">
       <input
         type="text"
         name="firstName"
-        id="firstName"
+        value="<%= user.firstName %>"
         required
-        placeholder="name..."
       />
-
-      <label for="LastName">Last Name: </label>
       <input
         type="text"
         name="lastName"
-        id="lastName"
+        value="<%= user.lastName %>"
         required
-        placeholder="last name..."
       />
-
-      <button type="submit">Submit</button>
     </form>
-
     <a href="/">Back to home</a>
   </body>
 </html>
