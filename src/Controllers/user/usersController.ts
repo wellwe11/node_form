@@ -26,12 +26,14 @@ export const validateUser: ValidationChain[] = [
     .isEmail()
     .withMessage(`Email ${emailErr}`)
     .isLength({ min: 1 })
-    .custom(async (email) => {
-      // const existingUser = await usersStorage.getUserByEmail(email);
-      // if (existingUser) {
-      //   throw new Error(emailInUse);
-      // }
-      // If I update user, this throws error because it finds a mathcing email. Need to fix
+    .custom(async (email, { req }) => {
+      const existingUser = await usersStorage.getUserByEmail(email);
+      if (existingUser) {
+        if (req.params && existingUser.id !== Number(req.params.id)) {
+          throw new Error(emailInUse);
+        }
+      }
+      return true;
     }),
   body("age").optional({ values: "falsy" }).isInt({ min: 0, max: 99 }),
   body("bio").optional({ values: "falsy" }).isLength({ min: 1, max: 200 }),
