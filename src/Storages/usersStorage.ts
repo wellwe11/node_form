@@ -52,6 +52,20 @@ class UsersStorage {
     return Object.values(this.storage).find((user) => user.email === email);
   }
 
+  findUser(email: userEmail, name: string) {
+    if (email) {
+      return this.getUserByEmail(email);
+    }
+
+    if (name) {
+      const splitted = name.split(" ");
+      return Object.values(this.storage).find(
+        (user) =>
+          user.firstName === splitted[0] && user.lastName === splitted[1],
+      );
+    }
+  }
+
   updateUser(
     id: userId,
     {

@@ -11,7 +11,6 @@ const usersCreatePost: RequestHandler[] = [
     // First we validate the user
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      console.log(errors);
       return res.status(400).render("createUser", {
         title: "Create user",
         errors: errors.array(),
