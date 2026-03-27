@@ -11,7 +11,7 @@ const userRouter = Router();
 userRouter.get("/", usersListGet);
 
 // Add user => post user
-userRouter.get("create", usersCreateGet);
-userRouter.post("create", usersCreatePost);
+userRouter.get("/create", usersCreateGet);
+userRouter.post("/create", usersCreatePost);
 
 export default userRouter;
