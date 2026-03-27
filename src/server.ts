@@ -6,6 +6,7 @@ import path, { dirname } from "node:path";
 import dotenv from "dotenv";
 
 import { body, validationResult } from "express-validator";
+import userRouter from "./Routes/usersRouter.js";
 
 // Load .env
 dotenv.config();
@@ -24,6 +25,8 @@ app.set("view engine", "ejs");
 
 // Update express's capability for reading forms
 app.use(express.urlencoded({ extended: true }));
+
+app.use("/", userRouter);
 
 app.listen(PORT, (err) => {
   if (err) {

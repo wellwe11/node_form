@@ -1,4 +1,4 @@
-import type { User, userId, userName } from "../Types/user.js";
+import type { User, userId, userName } from "../../Types/user.js";
 
 class UsersStorage {
   storage: Record<number, User>;
